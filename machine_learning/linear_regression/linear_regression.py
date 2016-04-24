@@ -30,6 +30,11 @@ class CostAndGradient:
         return j_history, theta
 
     @staticmethod
+    def extrapolated_output(x, theta):
+        # TODO validate the dimensions of the matrix to be multiplied
+        return common_utils.h_of_theta(x, theta);
+
+    @staticmethod
     def train_linear_regression(x, y, no_of_iterations, alpha):
         m = num_py.size(y)
         x = common_utils.add_column_of_ones(x, m)
