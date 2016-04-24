@@ -7,7 +7,8 @@ class CostAndGradient:
         self.alpha = alpha
         self.num_iterations = iterations
 
-    def cost(self, x, y, theta):
+    @staticmethod
+    def cost(x, y, theta):
         m = num_py.size(y)
         common_utils.validated_x_y_theta_dimensions(x, y, theta)
         hypothesis = common_utils.h_of_theta(x, theta)
@@ -30,7 +31,11 @@ class CostAndGradient:
         return j_history, theta
 
     @staticmethod
-    def train_linear_regression(x, y, no_of_iterations, alpha):
+    def extrapolated_output(self, x, theta):
+        return common_utils.h_of_theta(x, theta);
+
+    @staticmethod
+    def train_linear_regression(self, x, y, no_of_iterations, alpha):
         m = num_py.size(y)
         x = common_utils.add_column_of_ones(x, m)
         number_of_features = x.shape[1]
