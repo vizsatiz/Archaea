@@ -3,11 +3,13 @@ This project data analysis through machine learning on cloud. We basically are b
 The idea of machine learing hosted as a service and any application developer can bring up API's to use the same to train and build
 a neural network of there own through our sdk's
 
-# Vision
+#Languages
 This project is based on python with implementations of different machine learning algorithms on cloud. Major focus will be on
-image recognition with convolution Neural Networks with wavelet mutli resolution analysis for feature extraction.
+image recognition with convolution Neural Networks with wavelet mutli resolution analysis for feature extraction.Other languages include
+Java as part of android Sdk, SQL and javascript for angularjs frontend for the PaaS.
 
-# Coding Languages
+
+# Plan
 In the initial stages of the project we will basically concentrate on building solid machine learning algorithms with proper tests and
 with maximum efficiency. Once we are done with those we should move on to building architecture over this using FLASK and mySQL for exposing
 this as service.Then when the services are exposed lets build a mobile app with the same using the services exposed and use it to
