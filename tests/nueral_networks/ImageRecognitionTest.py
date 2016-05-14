@@ -10,6 +10,8 @@ from pybrain.tools.xml.networkwriter import NetworkWriter
 from pybrain.tools.xml.networkreader import NetworkReader
 import machine_learning.nueral_network.simple_neural_network as snn
 import machine_learning.model.NetworkArchitecture as netArch
+import machine_learning.nueral_network.nn_trainer_factory as trainFact
+import machine_learning.common_utils.common_constants as constants
 from sklearn import datasets
 
 olivetti = datasets.fetch_olivetti_faces()
@@ -31,9 +33,14 @@ fnn = snn.SimpleNeuralNetwork(netArch.NetworkArchitecture(dimension)).get_simple
 
     #buildNetwork(trndata.indim, 32, 64, trndata.outdim, outclass=SoftmaxLayer )
 #print fnn;
-trainer = BackpropTrainer(fnn, dataset=trndata, momentum=0.1, learningrate=0.01 , verbose=True, weightdecay=0.01)
+ #trainer = BackpropTrainer(fnn, dataset=trndata, momentum=0.1, learningrate=0.01 , verbose=True, weightdecay=0.01)
 NetworkWriter.writeToFile(fnn, 'oliv.xml')
-trainer.trainEpochs (50)
+parameters = {'network' : fnn, 'dataset': trndata, 'momentum': 0.1, 'learningrate': 0.01, 'verbose': True, 'weightdecay': 0.01}
+trainer = trainFact.NetworkTrainer(parameters).get_ann_trainer(constants.BACK_PROP_TRAINER)
+trainer.train(50)
+
+
+#trainer.trainEpochs (50)
 print 'Percent Error on Test dataset: ' , percentError( trainer.testOnClassData (
            dataset=tstdata )
            , tstdata['class'] )
