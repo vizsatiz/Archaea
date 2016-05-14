@@ -1,4 +1,5 @@
 import pybrain.supervised.trainers as trainers
+import pybrain.utilities as utilities
 
 
 class BackPropagationTrainer:
@@ -9,6 +10,8 @@ class BackPropagationTrainer:
         self.learning_rate = parameters['learningrate']
         self.verbose = parameters['verbose']
         self.weight_decay = parameters['weightdecay']
+        # This trainer object is of PyBrain
+        self.trainer = None
 
     def initiateAndGetTrainer(self):
         """
@@ -36,5 +39,15 @@ class BackPropagationTrainer:
         :param epochs_count: The number of iterations to be run for convergence.
         :return:
         """
-        trainer = self.initiateAndGetTrainer()
-        trainer.trainEpochs(epochs_count)
+        self.trainer = self.initiateAndGetTrainer()
+        self.trainer.trainEpochs(epochs_count)
+
+    def percentage_error_on_dataset(self, datasets):
+        """
+        Function returns the percentage error on neural network with respect to given data
+
+        :param datasets:
+        :return:
+        """
+        return utilities.percentError(self.trainer.testOnClassData(dataset=datasets)
+                    ,datasets['class'])

@@ -7,6 +7,12 @@ class NetworkTrainer:
         self.parameters = parameters
 
     def get_ann_trainer(self, trainer_type):
+        """
+        This function returns the back propagation trainer object
+
+        :param trainer_type:
+        :return:
+        """
         if trainer_type and trainer_type == constants.BACK_PROP_TRAINER:
             return bp_trainer.BackPropagationTrainer(parameters=self.parameters)
         return None

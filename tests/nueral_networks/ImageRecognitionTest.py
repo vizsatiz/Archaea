@@ -28,7 +28,7 @@ tstdata._convertToOneOfMany( )
 #if  os.path.isfile('oliv.xml'):
  #fnn = NetworkReader.readFrom('oliv.xml')
 #else:
-dimension = [trndata.indim, 32, 64, trndata.outdim]
+dimension = [trndata.indim, 64, trndata.outdim]
 fnn = snn.SimpleNeuralNetwork(netArch.NetworkArchitecture(dimension)).get_simple_neural_network()
 
     #buildNetwork(trndata.indim, 32, 64, trndata.outdim, outclass=SoftmaxLayer )
@@ -41,6 +41,4 @@ trainer.train(50)
 
 
 #trainer.trainEpochs (50)
-print 'Percent Error on Test dataset: ' , percentError( trainer.testOnClassData (
-           dataset=tstdata )
-           , tstdata['class'] )
+print 'Percent Error on Test dataset: ' , trainer.percentage_error_on_dataset(tstdata)
