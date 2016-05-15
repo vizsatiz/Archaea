@@ -1,0 +1,6 @@
+# Ignore all workspace history crap files created by the IDE
+.*
+# Ignoring all .pyc files created while compiling
+*.pyc
+# Ignoring .xml files created while saving
+*.xml

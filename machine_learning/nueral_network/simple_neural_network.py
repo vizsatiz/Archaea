@@ -1,26 +1,14 @@
-import numpy as num_py
+import machine_learning.nueral_network.network_builder as network_builder
+import machine_learning.common_utils.common_constants as constants
 
 
-class CostAndGradient:
-    def __init__(self, hidden_layers, input_size, number_of_output_classes):
-        self.hidden_layers = hidden_layers
-        self.input_size = input_size
-        self.number_of_output_classes = number_of_output_classes
-        self.array_of_thetas = self.initialize_theta(hidden_layers)
+class SimpleNeuralNetwork:
+    def __init__(self, network_architecture):
+        self.network_architecture = network_architecture
 
-    @staticmethod
-    def forward_propogation(self, x, y, theta_list):
-        return
+    def network_builder(self):
+        dimensions = self.network_architecture.get_ann_dimensions()
+        return network_builder.NetworkBuilderFactory(dimensions, constants.SIMPLE_ANN).build_ann()
 
-    def initialize_theta(self, hidden_layers, input_size):
-        theta_list = []
-        number_of_nodes_in_previous_layer = input_size
-        number_of_hidden_layers = len(hidden_layers)
-        for number_of_nodes in hidden_layers:
-            theta_matrix = self.initialize_theta_matrix(number_of_nodes_in_previous_layer, number_of_nodes)
-            theta_list.append(theta_matrix)
-            number_of_nodes_in_previous_layer = number_of_nodes
-        return theta_list
-
-    def initialize_theta_matrix(self, rows, columns):
-        return num_py.random.random((rows, columns)) - 1
+    def get_simple_neural_network(self):
+        return self.network_builder()
