@@ -1,5 +1,8 @@
 # This command file can be used to install packages and along with that saving the package name to
 # requirements file.
+
+# (sudo apt-get install libfreetype6-dev)
+# (pip install -r https://raw.githubusercontent.com/dnouri/nolearn/master/requirements.txt https://github.com/dnouri/nolearn/archive/master.zip#egg=nolearn)
 #!/usr/bin/env bash
 package_name=$1
 requirements_file=$2
