@@ -40,8 +40,8 @@ plt.imshow(X_train[0][0], cmap=cm.binary)
 
 
 net1 = NeuralNet(
-    layers=[('input', layers.InputLayer),
-            ('conv2d1vishnu', layers.Conv2DLayer),
+    layers=[('doul', layers.InputLayer),
+            ('conv2d1', layers.Conv2DLayer),
             ('maxpool1', layers.MaxPool2DLayer),
             ('conv2d2', layers.Conv2DLayer),
             ('maxpool2', layers.MaxPool2DLayer),
@@ -51,7 +51,7 @@ net1 = NeuralNet(
             ('output', layers.DenseLayer),
             ],
     # input layer
-    input_shape=(None, 1, 28, 28),
+    doul_shape=(None, 1, 28, 28),
     # layer conv2d1
     conv2d1_num_filters=32,
     conv2d1_filter_size=(5, 5),

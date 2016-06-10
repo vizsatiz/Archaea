@@ -2,22 +2,40 @@ import numpy as num_py
 import machine_learning.common_utils.common_helper as common_utils
 
 
-class CostAndGradient:
+class LinearRegression:
     def __init__(self, alpha, iterations):
         self.alpha = alpha
         self.num_iterations = iterations
 
     @staticmethod
-    def cost(self, x, y, theta):
+    def cost(x, y, theta):
+        """
+        This method calculates the cost of the predicted output by the linear regression.
+        This is the error we are trying to minimize
+
+        :param x:
+        :param y:
+        :param theta:
+        :return:
+        """
         m = num_py.size(y)
         common_utils.validated_x_y_theta_dimensions(x, y, theta)
-        hypothesis = self.h_of_theta(x, theta)
+        hypothesis = LinearRegression.h_of_theta(x, theta)
         abs_error = hypothesis - y
         abs_error_sqrd = num_py.multiply(abs_error, abs_error)
         j_cost = (num_py.sum(abs_error_sqrd)) / (2 * m)
         return j_cost
 
     def gradient_decent(self, x, y, theta):
+        """
+        Gradient Descent is the derivative of cost function which is the rate of change of error
+        We should find the Theta that minimises this GD value
+
+        :param x:
+        :param y:
+        :param theta:
+        :return:
+        """
         m = num_py.size(y)
         common_utils.validated_x_y_theta_dimensions(x, y, theta)
         j_history = num_py.zeros((self.num_iterations, 1))
@@ -31,19 +49,13 @@ class CostAndGradient:
         return j_history, theta
 
     @staticmethod
-    def extrapolated_output(self, x, theta):
-        return self.h_of_theta(x, theta)
+    def h_of_theta(x, theta):
+        """
+        Method for finding the hypothesis/prediction for given dataset h(theta)
 
-    @staticmethod
-    def train_linear_regression(self, x, y, no_of_iterations, alpha):
-        m = num_py.size(y)
-        x = common_utils.add_column_of_ones(x, m)
-        number_of_features = x.shape[1]
-        # no of elements in theta
-        theta = num_py.zeros((number_of_features, 1))
-        linear_regression = CostAndGradient(alpha, no_of_iterations)
-        return linear_regression.gradient_decent(x, y, theta)
-
-    def h_of_theta(self, x, theta):
+        :param x:
+        :param theta:
+        :return:
+        """
         common_utils.validate_matrix_multiplication_dimensions(x, theta)
         return num_py.dot(x, theta)
