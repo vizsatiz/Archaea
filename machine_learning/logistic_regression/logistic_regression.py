@@ -1,8 +1,9 @@
 import numpy as num_py
 import machine_learning.common_utils.common_helper as common_utils
+import machine_learning.common_utils.lambda_regularization as lambda_regularization
 
 
-class LogisticRegression:
+class LogisticRegression(lambda_regularization.Regularization):
     def __init__(self, alpha, iterations, regression_function):
         """
         Initialize the logistic regression
@@ -14,6 +15,7 @@ class LogisticRegression:
         self.alpha = alpha
         self.num_iterations = iterations
         self.regression_function = regression_function
+        super(LogisticRegression, self).__init__(lambda_regularization)
 
     def cost(self, x, y, theta):
         """
@@ -36,6 +38,18 @@ class LogisticRegression:
         j_cost = (num_py.sum(sum_of_terms)) / (-1 * m)
         return j_cost
 
+    def regularized_cost(self, x, y, theta):
+        """
+        This method calculates the cost of the predicted output by the linear regression.
+        This is the error we are trying to minimize
+
+        :param x:
+        :param y:
+        :param theta:
+        :return:
+        """
+        return self.cost(x, y, theta)
+
     def gradient_decent(self, x, y, theta):
         """
             Gradient Descent is the derivative of cost function which is the rate of change of error
@@ -54,7 +68,7 @@ class LogisticRegression:
             error = hypothesis - y
             for index in range(0, num_py.size(theta) - 1):
                 diff_error = num_py.multiply(error, x[:, index])
-                theta = theta - (self.alpha * (num_py.sum(diff_error)) / m)
+                theta = theta - (self.alpha * (num_py.sum(diff_error) + self.gradient_regularization(theta)) / m)
             j_history[j_history_index] = self.cost(x, y, theta)
         return j_history, theta
 
