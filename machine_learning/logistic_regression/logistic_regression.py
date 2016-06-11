@@ -1,14 +1,30 @@
 import numpy as num_py
 import machine_learning.common_utils.common_helper as common_utils
-import machine_learning.logistic_regression.regression_function as reg_functions
 
 
-class CostAndGradient:
-    def __init__(self, alpha, iterations):
+class LogisticRegression:
+    def __init__(self, alpha, iterations, regression_function):
+        """
+        Initialize the logistic regression
+
+        :param alpha: learning rate
+        :param iterations: number of iterations
+        :param regression_function: The regression function
+        """
         self.alpha = alpha
         self.num_iterations = iterations
+        self.regression_function = regression_function
 
     def cost(self, x, y, theta):
+        """
+            This method calculates the cost of the predicted output by the linear regression.
+            This is the error we are trying to minimize
+
+            :param x:
+            :param y:
+            :param theta:
+            :return:
+            """
         m = num_py.size(y)
         common_utils.validated_x_y_theta_dimensions(x, y, theta)
         hypothesis = self.h_of_theta(x, theta)
@@ -21,6 +37,15 @@ class CostAndGradient:
         return j_cost
 
     def gradient_decent(self, x, y, theta):
+        """
+            Gradient Descent is the derivative of cost function which is the rate of change of error
+            We should find the Theta that minimises this GD value
+
+            :param x:
+            :param y:
+            :param theta:
+            :return:
+            """
         m = num_py.size(y)
         common_utils.validated_x_y_theta_dimensions(x, y, theta)
         j_history = num_py.zeros((self.num_iterations, 1))
@@ -33,28 +58,12 @@ class CostAndGradient:
             j_history[j_history_index] = self.cost(x, y, theta)
         return j_history, theta
 
-    @staticmethod
-    def train_logistic_regression(self, x, y, no_of_iterations, alpha):
-        m = num_py.size(y)
-        x = common_utils.add_column_of_ones(x, m)
-        number_of_features = x.shape[1]
-        # no of elements in theta
-        theta = num_py.zeros((number_of_features, 1))
-        logistic_regression = CostAndGradient(alpha, no_of_iterations)
-        return logistic_regression.gradient_decent(x, y, theta)
+    def h_of_theta(self, x, theta):
+        """
+            Method for finding the hypothesis/prediction for given dataset h(theta)
 
-    @staticmethod
-    def h_of_theta(x, theta):
-        return reg_functions.sigmoid(x)
-
-    @staticmethod
-    def predict(x, theta, threshold):
-        m, n = x.shape
-        p = num_py.zeros(shape=(m, 1))
-        h = reg_functions.sigmoid(x.dot(theta.T))
-        for it in range(0, h.shape[0]):
-            if h[it] > threshold:
-                p[it, 0] = 1
-            else:
-                p[it, 0] = 0
-        return p
+            :param x:
+            :param theta:
+            :return:
+            """
+        return self.regression_function(x)

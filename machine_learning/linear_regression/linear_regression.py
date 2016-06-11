@@ -3,9 +3,15 @@ import machine_learning.common_utils.common_helper as common_utils
 
 
 class LinearRegression:
-    def __init__(self, alpha, iterations):
+    def __init__(self, alpha, no_of_iterations):
+        """
+            Initialize the logistic regression
+
+            :param alpha: learning rate
+            :param iterations: number of iterations
+            """
         self.alpha = alpha
-        self.num_iterations = iterations
+        self.num_iterations = no_of_iterations
 
     @staticmethod
     def cost(x, y, theta):
