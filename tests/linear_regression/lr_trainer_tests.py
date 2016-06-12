@@ -1,6 +1,6 @@
 import machine_learning.linear_regression.linear_regression as lr
 import machine_learning.linear_regression.lr_trainer as trainer
-import lr_test_data as test_data
+import tests.test_data.lin_reg_data as test_data
 import numpy as num_py
 import unittest
 

@@ -1,5 +1,5 @@
 import machine_learning.linear_regression.linear_regression as lr
-import lr_test_data as test_data
+import tests.test_data.lin_reg_data as test_data
 import numpy as num_py
 import unittest
 
@@ -10,6 +10,7 @@ lr_object = lr.LinearRegression(alpha, no_of_iterations, lambda_param)
 
 
 class TestLinearRegressionCostFunctions(unittest.TestCase):
+
     def test_cost_function_zero_error(self):
         cost_value = lr_object.cost(test_data.ZERO_ERROR_TEST_DATA_SET_X, test_data.ZERO_ERROR_TEST_DATA_SET_Y,
                                     test_data.ZERO_ERROR_TEST_DATA_SET_THETA)

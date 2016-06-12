@@ -11,5 +11,3 @@ then
     requirements_file='./requirements.txt'
 fi
 sudo pip install $package_name && pip freeze | grep -i $package_name >> $requirements_file
-
-

@@ -1,5 +1,5 @@
 import machine_learning.linear_regression.linear_regression as lr
-import lr_test_data as test_data
+import tests.test_data.lin_reg_data as test_data
 import numpy as num_py
 import unittest
 
@@ -25,7 +25,8 @@ class TestLinearRegressionGradientDescent(unittest.TestCase):
         [j_history, theta] = lr_object.gradient_decent(test_data.ZERO_ERROR_TEST_DATA_SET_X,
                                                        test_data.ZERO_ERROR_TEST_DATA_SET_Y,
                                                        test_data.ZERO_ERROR_TEST_DATA_SET_THETA)
-        self.assertEqual(True, num_py.array_equal(theta, test_data.TWO_ITERATIONS_SMALL_ALPHA_EXPECTED))
+        self.assertEqual(theta.item(0), test_data.TWO_ITERATIONS_SMALL_ALPHA_THETA1)
+        self.assertEqual(theta.item(1), test_data.TWO_ITERATIONS_SMALL_ALPHA_THETA2)
 
     def test_gradient_descent_fifty_iterations_with_big_alpha(self):
         alpha = 0.2
@@ -35,7 +36,8 @@ class TestLinearRegressionGradientDescent(unittest.TestCase):
         [j_history, theta] = lr_object.gradient_decent(test_data.ZERO_ERROR_TEST_DATA_SET_X,
                                                        test_data.ZERO_ERROR_TEST_DATA_SET_Y,
                                                        test_data.ZERO_ERROR_TEST_DATA_SET_THETA)
-        self.assertEqual(True, num_py.array_equal(theta, test_data.FIFTY_ITERATIONS_SMALL_ALPHA_EXPECTED))
+        self.assertEqual(theta.item(0), test_data.FIFTY_ITERATIONS_SMALL_ALPHA_THETA1)
+        self.assertEqual(theta.item(1), test_data.FIFTY_ITERATIONS_SMALL_ALPHA_THETA2)
 
     def test_gradient_descent_two_iterations_with_big_alpha(self):
         alpha = 1
@@ -45,5 +47,6 @@ class TestLinearRegressionGradientDescent(unittest.TestCase):
         [j_history, theta] = lr_object.gradient_decent(test_data.ZERO_ERROR_TEST_DATA_SET_X,
                                                        test_data.ZERO_ERROR_TEST_DATA_SET_Y,
                                                        test_data.ZERO_ERROR_TEST_DATA_SET_THETA)
-        self.assertEqual(True, num_py.array_equal(theta, test_data.TWO_ITERATIONS_BIG_ALPHA_EXPECTED))
+        self.assertEqual(theta.item(0), test_data.TWO_ITERATIONS_BIG_ALPHA_THETA1)
+        self.assertEqual(theta.item(1), test_data.TWO_ITERATIONS_BIG_ALPHA_THETA2)
 
