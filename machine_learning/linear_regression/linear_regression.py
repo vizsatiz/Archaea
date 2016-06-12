@@ -31,7 +31,7 @@ class LinearRegression(lambda_regularization.Regularization):
         hypothesis = LinearRegression.h_of_theta(x, theta)
         abs_error = hypothesis - y
         abs_error_sqrd = num_py.multiply(abs_error, abs_error)
-        j_cost = (num_py.sum(abs_error_sqrd)) / (2 * m)
+        j_cost = (num_py.sum(abs_error_sqrd)) / float(2 * m)
         return j_cost
 
     def regularized_cost(self, x, y, theta):
@@ -58,13 +58,13 @@ class LinearRegression(lambda_regularization.Regularization):
         m = num_py.size(y)
         common_utils.validated_x_y_theta_dimensions(x, y, theta)
         j_history = num_py.zeros((self.num_iterations, 1))
-        for j_history_index in range(1, self.num_iterations):
+        for j_history_index in range(0, self.num_iterations):
             hypothesis = self.h_of_theta(x, theta)
             error = hypothesis - y
             for index in range(0, num_py.size(theta) - 1):
                 diff_error = num_py.multiply(error, x[:, index])
-                theta = theta - (self.alpha * (num_py.sum(diff_error) + self.gradient_regularization(theta)) / m)
-            j_history[j_history_index] = self.cost(x, y, theta)
+                theta = theta - (self.alpha * (num_py.sum(diff_error) + self.gradient_regularization(theta)) / float(m))
+            j_history[j_history_index] = self.regularized_cost(x, y, theta)
         return j_history, theta
 
     @staticmethod
