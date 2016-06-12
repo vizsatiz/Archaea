@@ -7,6 +7,7 @@ import machine_learning.common_utils.error_messages as errors
 
 
 class TestCommonUtils(unittest.TestCase):
+
     def lambda_cost_regularization_test(self):
         regularization_value = lambda_reg.Regularization(test_data.REGULARIZATION_TEST_DATA_FOR_LAMBDA). \
             cost_regularization(test_data.REGULARIZATION_TEST_DATA_FOR_THETA)

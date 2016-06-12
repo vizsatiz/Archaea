@@ -3,6 +3,7 @@ import machine_learning.linear_regression.lr_trainer as trainer
 import tests.test_data.lin_reg_data as test_data
 import numpy as num_py
 import unittest
+import sys
 
 
 class TestLinearRegressionTrainerTest(unittest.TestCase):
@@ -14,12 +15,12 @@ class TestLinearRegressionTrainerTest(unittest.TestCase):
         :return:
         """
         alpha = 0.001
-        lambda_reg = 0.001
+        lambda_reg = 0.01
         no_of_iterations = 5
         linear_regression = lr.LinearRegression(alpha, no_of_iterations, lambda_reg)
         trainer_object = trainer.LinearRegressionTrainer(linear_regression)
         [j_history, theta] = trainer_object.train(test_data.TRAINER_TEST_X, test_data.TRAINER_TEST_Y)
-        previous_value = 1
+        previous_value = sys.maxint
         flag = True
         for x, value in num_py.ndenumerate(j_history):
             if previous_value <= value:
@@ -34,11 +35,13 @@ class TestLinearRegressionTrainerTest(unittest.TestCase):
         :return:
         """
         alpha = 0.001
-        lambda_reg = 0.001
-        no_of_iterations = 70
+        lambda_reg = 0.01
+        no_of_iterations = 15
         linear_regression = lr.LinearRegression(alpha, no_of_iterations, lambda_reg)
         trainer_object = trainer.LinearRegressionTrainer(linear_regression)
         [j_history, theta] = trainer_object.train(test_data.TRAINER_TEST_X, test_data.TRAINER_TEST_Y)
-        prediction =  trainer.LinearRegressionTrainer.predict(test_data.TRAINER_TEST_VALUE, theta)
-        self.assertEqual(prediction.item(0), test_data.TRAINER_TEST_PREDICTION)
+        prediction_1 = trainer.LinearRegressionTrainer.predict(test_data.TRAINER_TEST_VALUE_1, theta)
+        prediction_2 = trainer.LinearRegressionTrainer.predict(test_data.TRAINER_TEST_VALUE_2, theta)
+        self.assertEqual(prediction_1.item(0), test_data.TRAINER_TEST_PREDICTION_1)
+        self.assertEqual(prediction_2.item(0), test_data.TRAINER_TEST_PREDICTION_2)
 
