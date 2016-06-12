@@ -3,11 +3,17 @@ import machine_learning.common_utils.common_helper as common_utils
 import linear_regression as lr
 
 
-class linear_regression_trainer:
-    def __init__(self, linear_regression, alpha, no_of_iterations):
+class LinearRegressionTrainer:
+
+    def __init__(self, linear_regression):
+        """
+        Initiate the trainer with linear regression object
+
+        :param linear_regression:
+        """
         self.lr_object = linear_regression
-        self.alpha = alpha
-        self.no_of_iterations = no_of_iterations
+        self.alpha = linear_regression.alpha
+        self.no_of_iterations = linear_regression.num_iterations
 
     def train(self, X_train, Y_train):
         """
@@ -23,10 +29,10 @@ class linear_regression_trainer:
         number_of_features = x.shape[1]
         # no of elements in theta
         theta = num_py.zeros((number_of_features, 1))
-        linear_regression = lr.LinearRegression(self.alpha, self.no_of_iterations)
-        return linear_regression.gradient_decent(x, Y_train, theta)
+        return self.lr_object.gradient_decent(x, Y_train, theta)
 
-    def perdict(self, X, theta):
+    @staticmethod
+    def predict(X, theta):
         """
         This method predicts the output for given dataset and trained lr
 

@@ -6,6 +6,7 @@ class Regularization(object):
         self.lambda_param = lambda_param
 
     def cost_regularization(self, theta):
+        # type: (object) -> object
         """
         Calculates the regression for cost function  lambda * sigma(theta squared)
 

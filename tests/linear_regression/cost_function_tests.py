@@ -1,32 +1,42 @@
 import machine_learning.linear_regression.linear_regression as lr
+import tests.test_data.lin_reg_data as test_data
+import numpy as num_py
 import unittest
-import numpy
 
 alpha = 0
+lambda_param = 0.001
 no_of_iterations = 0
-theta = 0.001
-lr_object = lr.LinearRegression(alpha, no_of_iterations, theta)
+lr_object = lr.LinearRegression(alpha, no_of_iterations, lambda_param)
 
 
-class TestLinearRegression(unittest.TestCase):
-    """
-    This test checks the zero error condition for cost function.
-    """
+class TestLinearRegressionCostFunctions(unittest.TestCase):
 
     def test_cost_function_zero_error(self):
-        x = numpy.matrix('1 2;3 4')
-        theta = numpy.matrix('7;8')
-        y = numpy.matrix('23;53')
-        cost_value = lr_object.cost(x, y, theta)
-        self.assertEqual(cost_value, 0)
+        cost_value = lr_object.cost(test_data.ZERO_ERROR_TEST_DATA_SET_X, test_data.ZERO_ERROR_TEST_DATA_SET_Y,
+                                    test_data.ZERO_ERROR_TEST_DATA_SET_THETA)
+        self.assertEqual(cost_value, test_data.ZERO_ERROR_TEST_DATA_SET_EXPECTED_OUTPUT)
 
     def test_cost_function_non_zero_error(self):
-        x = numpy.matrix('1 2;3 4')
-        theta = numpy.matrix('7;8')
-        y = numpy.matrix('23;52')
-        cost_value = lr_object.cost(x, y, theta)
-        print cost_value
-        #self.assertEqual(cost_value, 0)
+        cost_value = lr_object.cost(test_data.NON_ZERO_ERROR_TEST_DATA_SET_X, test_data.NON_ZERO_ERROR_TEST_DATA_SET_Y,
+                                    test_data.NON_ZERO_ERROR_TEST_DATA_SET_THETA)
+        self.assertEqual(cost_value, test_data.NON_ZERO_ERROR_TEST_DATA_SET_EXPECTED_OUTPUT)
+
+    def test_regularized_cost_function_zero_error(self):
+        cost_value = lr_object.regularized_cost(test_data.ZERO_ERROR_TEST_DATA_SET_X,
+                                                test_data.ZERO_ERROR_TEST_DATA_SET_Y,
+                                                test_data.ZERO_ERROR_TEST_DATA_SET_THETA)
+        self.assertEqual(cost_value, test_data.ZERO_ERROR_TEST_DATA_SET_EXPECTED_OUTPUT_REGULARIZED)
+
+    def test_regularized_cost_function_non_zero_error(self):
+        cost_value = lr_object.regularized_cost(test_data.NON_ZERO_ERROR_TEST_DATA_SET_X,
+                                                test_data.NON_ZERO_ERROR_TEST_DATA_SET_Y,
+                                                test_data.NON_ZERO_ERROR_TEST_DATA_SET_THETA)
+        self.assertEqual(cost_value, test_data.NON_ZERO_ERROR_TEST_DATA_SET_EXPECTED_OUTPUT_REGULARIZED)
+
+    def test_h_of_theta(self):
+        h_of_theta = lr_object.h_of_theta(test_data.NON_ZERO_ERROR_TEST_DATA_SET_X,
+                                          test_data.NON_ZERO_ERROR_TEST_DATA_SET_THETA)
+        self.assertEqual(True, num_py.array_equal(h_of_theta, test_data.H_OF_THETA))
 
 
 if __name__ == '__main__':
