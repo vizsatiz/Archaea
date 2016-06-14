@@ -3,6 +3,7 @@ import pybrain.utilities as utilities
 
 
 class BackPropagationTrainer:
+
     def __init__(self, parameters):
         self.network_module = parameters['network']
         self.dataset = parameters['dataset']

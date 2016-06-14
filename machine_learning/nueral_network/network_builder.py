@@ -1,6 +1,6 @@
 import machine_learning.common_utils.common_constants as constants
 import machine_learning.common_utils.error_messages as errors
-from pybrain.tools.shortcuts import buildNetwork as pyBrain_builder
+from pybrain.tools.shortcuts import buildNetwork as pybrain_builder
 from pybrain.structure.modules import SoftmaxLayer
 
 
@@ -22,6 +22,7 @@ class NetworkBuilderFactory:
 
 
 class SimpleNetworkBuilder:
+
     def __init__(self, network_dimensions):
         self.network_dimensions = network_dimensions
 
@@ -47,4 +48,4 @@ class SimpleNetworkBuilder:
         :return:
         """
         self.validate_dimensions()
-        return pyBrain_builder(*self.network_dimensions, outclass=SoftmaxLayer)
+        return pybrain_builder(*self.network_dimensions, outclass=SoftmaxLayer)
