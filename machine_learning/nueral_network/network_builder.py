@@ -4,11 +4,17 @@ from pybrain.structure.modules import SoftmaxLayer
 
 
 class NetworkBuilderFactory:
+
     def __init__(self, dimensions, ann_type):
         self.dimensions = dimensions
         self.ann_type = ann_type
 
     def build_ann(self):
+        """
+        Builds and returns a network with the passed architecture
+
+        :return:
+        """
         if self.ann_type and self.ann_type == constants.SIMPLE_ANN:
             return SimpleNetworkBuilder(self.dimensions).build_network()
         return None
@@ -22,6 +28,11 @@ class SimpleNetworkBuilder:
         pass
 
     def build_network(self):
+        """
+        Builds and returns the network of required size
+
+        :return:
+        """
         self.validate_dimensions()
         print self.network_dimensions
         print type(self.network_dimensions)
