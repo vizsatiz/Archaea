@@ -1,4 +1,5 @@
 import machine_learning.common_utils.common_constants as constants
+import machine_learning.common_utils.error_messages as errors
 from pybrain.tools.shortcuts import buildNetwork as pyBrain_builder
 from pybrain.structure.modules import SoftmaxLayer
 
@@ -25,7 +26,19 @@ class SimpleNetworkBuilder:
         self.network_dimensions = network_dimensions
 
     def validate_dimensions(self):
-        pass
+        """
+        Validating the network dimensions
+
+        1. 0 < length of dimensions <= 10
+        2. each dimension > 0
+
+        :return:
+        """
+        if len(self.network_dimensions) < 2 or len(self.network_dimensions) >= constants.NEURAL_NETWORK_MAX_LAYER_COUNT:
+            raise ValueError(errors.NEURAL_NETWORK_DIMENSIONS_MISMATCH)
+        for number_of_nodes in self.network_dimensions:
+            if number_of_nodes < 0:
+                raise ValueError(errors.NETWORK_DIMENSIONS_NEGATIVE)
 
     def build_network(self):
         """
@@ -34,6 +47,4 @@ class SimpleNetworkBuilder:
         :return:
         """
         self.validate_dimensions()
-        print self.network_dimensions
-        print type(self.network_dimensions)
         return pyBrain_builder(*self.network_dimensions, outclass=SoftmaxLayer)
