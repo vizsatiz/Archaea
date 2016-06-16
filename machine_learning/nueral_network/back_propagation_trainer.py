@@ -3,6 +3,7 @@ import pybrain.utilities as utilities
 
 
 class BackPropagationTrainer:
+
     def __init__(self, parameters):
         self.network_module = parameters['network']
         self.dataset = parameters['dataset']
@@ -39,8 +40,11 @@ class BackPropagationTrainer:
         :param epochs_count: The number of iterations to be run for convergence.
         :return:
         """
+        j_history = []
         self.trainer = self.initiateAndGetTrainer()
-        self.trainer.trainEpochs(epochs_count)
+        for count in range(epochs_count):
+            j_history.append(self.trainer.train())
+        return j_history
 
     def percentage_error_on_dataset(self, datasets):
         """
