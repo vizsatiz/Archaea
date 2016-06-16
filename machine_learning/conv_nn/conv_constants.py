@@ -4,7 +4,6 @@ CONVOLUTIONAL_2D_LAYER = 'Conv2DLayer'
 MAX_POOL_2D_LAYER = 'MaxPool2DLayer'
 DROPOUT_LAYER = 'DropoutLayer'
 DENSE_LAYER = 'DenseLayer'
-OUTPPUT_LAYER = ''
 
 # CNN Architecture Params
 LAYER_NAME = 'layer_name'
