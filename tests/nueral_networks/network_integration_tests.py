@@ -2,7 +2,6 @@ import unittest
 from numpy import ravel
 from sklearn import datasets
 from pybrain.datasets import ClassificationDataSet
-from pybrain.tools.xml.networkwriter import NetworkWriter
 import machine_learning.nueral_network.simple_neural_network as snn
 import machine_learning.model.NetworkArchitecture as netArch
 import machine_learning.nueral_network.nn_trainer_factory as trainFact
