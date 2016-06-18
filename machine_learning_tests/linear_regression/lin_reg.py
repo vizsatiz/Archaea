@@ -32,22 +32,3 @@ for deg, s in zip([1, 2, 5], ['*','-', '.']):
     print(' '.join(['%.2f' % c for c in lrp.coef_]))
 plt.plot(x, y, 'ok', ms=10)
 plt.title("Linear regression")
-"""
-ridge = lm.RidgeCV()
-plt.figure(figsize=(6,3));
-plt.plot(x_tr, y_tr, '--k');
-
-for deg, s in zip([2, 5], ['-', '.']):
-    ridge.fit(np.vander(x, deg + 1), y);
-    y_ridge = ridge.predict(np.vander(x_tr, deg + 1))
-    plt.plot(x_tr, y_ridge, s, label='degree ' + str(deg));
-    plt.legend(loc=2);
-    plt.xlim(0, 1.5);
-    plt.ylim(-5, 80);
-    # Print the model's coefficients.
-    print(' '.join(['%.2f' % c for c in ridge.coef_]))
-
-plt.plot(x, y, 'ok', ms=10);
-plt.title("Ridge regression");
-
-"""
