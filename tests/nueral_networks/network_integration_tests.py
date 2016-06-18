@@ -2,10 +2,9 @@ import unittest
 from numpy import ravel
 from sklearn import datasets
 from pybrain.datasets import ClassificationDataSet
-import machine_learning.nueral_network.simple_neural_network as snn
-import machine_learning.model.NetworkArchitecture as netArch
-import machine_learning.nueral_network.nn_trainer_factory as trainFact
 import machine_learning.common_utils.common_constants as constants
+import machine_learning.nueral_network.simple_neural_network as snn
+import machine_learning.nueral_network.nn_trainer_factory as trainFact
 
 
 class NeuralNetworkIntegrationTests(unittest.TestCase):
@@ -20,7 +19,7 @@ class NeuralNetworkIntegrationTests(unittest.TestCase):
         trndata._convertToOneOfMany()
         tstdata._convertToOneOfMany()
         dimension = [trndata.indim, 64, trndata.outdim]
-        fnn = snn.SimpleNeuralNetwork(netArch.NetworkArchitecture(dimension)).get_simple_neural_network()
+        fnn = snn.SimpleNeuralNetwork(dimension).get_simple_neural_network()
         parameters = {'network': fnn, 'dataset': trndata, 'momentum': 0.1, 'learningrate': 0.01, 'verbose': True,
                       'weightdecay': 0.01}
         trainer = trainFact.NetworkTrainer(parameters).get_ann_trainer(constants.BACK_PROP_TRAINER)

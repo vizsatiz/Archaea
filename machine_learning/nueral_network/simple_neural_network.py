@@ -12,8 +12,7 @@ class SimpleNeuralNetwork:
 
         :return:
         """
-        dimensions = self.network_architecture.get_ann_dimensions()
-        return network_builder.NetworkBuilderFactory(dimensions, constants.SIMPLE_ANN).build_ann()
+        return network_builder.NetworkBuilderFactory(self.network_architecture, constants.SIMPLE_ANN).build_ann()
 
     def get_simple_neural_network(self):
         """
