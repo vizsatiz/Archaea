@@ -4,7 +4,9 @@
 *.pyc
 # Ignoring .xml files created while saving
 *.xml
-# Ingoring some test data files
+# Igoring some test data files
 mnist.pkl.gz
 # Ignoring the lasagne repo
 src
+# Ignoring build folders
+build
