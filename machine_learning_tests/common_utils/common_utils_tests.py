@@ -1,6 +1,6 @@
 import unittest
 import numpy as num_py
-import tests.test_data.com_util_data as test_data
+import machine_learning_tests.test_data.com_util_data as test_data
 import machine_learning.common_utils.lambda_regularization as lambda_reg
 import machine_learning.common_utils.common_helper as common_helper
 import machine_learning.common_utils.error_messages as errors

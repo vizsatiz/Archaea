@@ -1,6 +1,6 @@
 import unittest
 import numpy as num_py
-import tests.test_data.lin_reg_data as constants
+import machine_learning_tests.test_data.lin_reg_data as constants
 import machine_learning.linear_regression.lin_reg_trainer as trainer
 import machine_learning.linear_regression.lin_reg_builder as lr_builder
 

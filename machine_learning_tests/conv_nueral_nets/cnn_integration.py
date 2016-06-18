@@ -14,7 +14,7 @@ from nolearn.lasagne import NeuralNet
 from nolearn.lasagne import visualize
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
-import tests.test_data.cnn_test_data as constants
+import machine_learning_tests.test_data.cnn_test_data as constants
 import machine_learning.conv_nn.network_builder as builder
 
 def load_dataset():
