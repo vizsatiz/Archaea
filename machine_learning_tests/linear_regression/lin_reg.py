@@ -9,6 +9,7 @@ x_tr = np.linspace(0., 2, 200)
 y_tr = f(x_tr)
 
 x = np.array([0, .1, .2, .5, .8, .9, 1])
+print x
 y = f(x) + np.random.randn(len(x))
 
 plt.figure(figsize=(6,3))

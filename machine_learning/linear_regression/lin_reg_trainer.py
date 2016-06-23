@@ -31,3 +31,23 @@ class LinearRegressionTrainer:
         :return:
         """
         return self.lr_object.predict(num_py.vander(X, self.degree + 1))
+
+    def error_and_variance(self, X_test, Y_test):
+        """
+        This function returns the error on given test data
+
+        :param X_test:
+        :param Y_test:
+        :return:
+        """
+        mean_error = num_py.mean(self.lr_object.predict(X_test - Y_test) ** 2)
+        variance = self.lr_object.score(X_test, Y_test)
+        return mean_error, variance
+
+    def regression_coefficients(self):
+        """
+        Current state of coefficients
+
+        :return:
+        """
+        return self.lr_object.coef_
