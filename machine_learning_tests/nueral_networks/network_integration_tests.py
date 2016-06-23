@@ -2,9 +2,8 @@ import unittest
 from numpy import ravel
 from sklearn import datasets
 from pybrain.datasets import ClassificationDataSet
-import machine_learning.common_utils.common_constants as constants
-import machine_learning.nueral_network.simple_neural_network as snn
-import machine_learning.nueral_network.nn_trainer_factory as trainFact
+import machine_learning.nueral_network.nn_trainer as trainer
+import machine_learning.nueral_network.network_builder as builder
 
 
 class NeuralNetworkIntegrationTests(unittest.TestCase):
@@ -19,10 +18,10 @@ class NeuralNetworkIntegrationTests(unittest.TestCase):
         trndata._convertToOneOfMany()
         tstdata._convertToOneOfMany()
         dimension = [trndata.indim, 64, trndata.outdim]
-        fnn = snn.SimpleNeuralNetwork(dimension).get_simple_neural_network()
+        fnn = builder.NeuralNetworkBuilder(dimensions=dimension).build()
         parameters = {'network': fnn, 'dataset': trndata, 'momentum': 0.1, 'learningrate': 0.01, 'verbose': True,
                       'weightdecay': 0.01}
-        trainer = trainFact.NetworkTrainer(parameters).get_ann_trainer(constants.BACK_PROP_TRAINER)
-        errors = trainer.train(2)
-        efficiency = trainer.percentage_error_on_dataset(tstdata)
+        bp_trainer = trainer.NeuralNetworkTrainer(parameters)
+        errors = bp_trainer.train(2)
+        efficiency = bp_trainer.percentage_error_on_dataset(tstdata)
         self.assertGreaterEqual(efficiency, 90.0)
