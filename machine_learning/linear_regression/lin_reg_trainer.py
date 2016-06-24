@@ -40,8 +40,8 @@ class LinearRegressionTrainer:
         :param Y_test:
         :return:
         """
-        mean_error = num_py.mean(self.lr_object.predict(X_test - Y_test) ** 2)
-        variance = self.lr_object.score(X_test, Y_test)
+        mean_error = num_py.mean((self.predict(X_test) - (Y_test)) ** 2)
+        variance = self.lr_object.score(num_py.vander(X_test, self.degree + 1), Y_test)
         return mean_error, variance
 
     def regression_coefficients(self):

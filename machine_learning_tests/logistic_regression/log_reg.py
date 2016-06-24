@@ -6,10 +6,7 @@ from sklearn.linear_model import LogisticRegression
 dataset = datasets.load_iris()
 # fit a logistic regression model to the data
 model = LogisticRegression()
-
-print dataset.target
 model.fit(dataset.data, dataset.target)
-print(model)
 # make predictions
 expected = dataset.target
 predicted = model.predict(dataset.data)
