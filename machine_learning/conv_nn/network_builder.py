@@ -17,3 +17,5 @@ class ConvNetworkBuilder:
         [layer_tuples, kwargs] = kwargs_builder.ConvNetArgsBuilder(self.network_architecture).cnn_parameters_parser()
         cnn_network = NeuralNet(layer_tuples, **kwargs)
         return cnn_network
+
+

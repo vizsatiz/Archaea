@@ -1,5 +1,4 @@
 import numpy as np
-import scipy.stats as st
 import sklearn.linear_model as lm
 import matplotlib.pyplot as plt
 
