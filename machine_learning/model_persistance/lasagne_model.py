@@ -21,4 +21,4 @@ class LasagneModelPersistenceHelper:
         :param state:
         :return:
         """
-        return model_object.load_weights_from(state)
+        return model_object.load_params_from(state)

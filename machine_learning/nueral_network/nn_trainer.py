@@ -12,7 +12,7 @@ class NeuralNetworkTrainer:
         self.verbose = parameters['verbose']
         self.weight_decay = parameters['weightdecay']
         # This trainer object is of PyBrain
-        self.trainer = None
+        self.trainer = self.__initiate_and_get_trainer()
 
     def __initiate_and_get_trainer(self):
         """
@@ -41,7 +41,6 @@ class NeuralNetworkTrainer:
         :return:
         """
         j_history = []
-        self.trainer = self.__initiate_and_get_trainer()
         for count in range(epochs_count):
             j_history.append(self.trainer.train())
         return j_history

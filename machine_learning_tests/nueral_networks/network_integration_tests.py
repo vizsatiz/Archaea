@@ -8,7 +8,7 @@ import machine_learning.nueral_network.network_builder as builder
 
 class NeuralNetworkIntegrationTests(unittest.TestCase):
 
-    def test_neural_network_training(self):
+    def neural_network_training_tests(self):
         olivetti = datasets.fetch_olivetti_faces()
         X, y = olivetti.data, olivetti.target
         ds = ClassificationDataSet(4096, 1, nb_classes=40)
@@ -22,6 +22,6 @@ class NeuralNetworkIntegrationTests(unittest.TestCase):
         parameters = {'network': fnn, 'dataset': trndata, 'momentum': 0.1, 'learningrate': 0.01, 'verbose': True,
                       'weightdecay': 0.01}
         bp_trainer = trainer.NeuralNetworkTrainer(parameters)
-        errors = bp_trainer.train(2)
+        bp_trainer.train(2)
         efficiency = bp_trainer.percentage_error_on_dataset(tstdata)
         self.assertGreaterEqual(efficiency, 90.0)

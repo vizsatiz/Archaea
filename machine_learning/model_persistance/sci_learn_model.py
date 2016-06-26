@@ -24,4 +24,4 @@ class SciLearnModelPersistenceHelper:
         :param state:
         :return:
         """
-        return pickle.load(state)
+        return pickle.loads(state)
