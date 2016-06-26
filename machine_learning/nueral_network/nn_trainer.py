@@ -2,7 +2,7 @@ import pybrain.supervised.trainers as trainers
 import pybrain.utilities as utilities
 
 
-class BackPropagationTrainer:
+class NeuralNetworkTrainer:
 
     def __init__(self, parameters):
         self.network_module = parameters['network']
@@ -12,9 +12,9 @@ class BackPropagationTrainer:
         self.verbose = parameters['verbose']
         self.weight_decay = parameters['weightdecay']
         # This trainer object is of PyBrain
-        self.trainer = None
+        self.trainer = self.__initiate_and_get_trainer()
 
-    def initiateAndGetTrainer(self):
+    def __initiate_and_get_trainer(self):
         """
         Building the back propagation trainer
 
@@ -41,7 +41,6 @@ class BackPropagationTrainer:
         :return:
         """
         j_history = []
-        self.trainer = self.initiateAndGetTrainer()
         for count in range(epochs_count):
             j_history.append(self.trainer.train())
         return j_history

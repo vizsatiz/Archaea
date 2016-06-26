@@ -1,3 +1,6 @@
+from sklearn import metrics
+
+
 class LogisticRegressionTrainer:
 
     def __init__(self, logistic_regression):
@@ -23,3 +26,24 @@ class LogisticRegressionTrainer:
         :return:
         """
         return self.logistic_regression.predict(X)
+
+    def confusion_matrix(self, X_test, Y_test):
+        """
+        Confusion matrix for logistic regression
+
+        :param X_test:
+        :param Y_test:
+        :return:
+        """
+        predicted = self.logistic_regression.predict(X_test)
+        report = metrics.classification_report(Y_test, predicted)
+        confusion_matrix = metrics.confusion_matrix(Y_test, predicted)
+        return report, confusion_matrix
+
+    def regression_coefficients(self):
+        """
+        Current state of coefficients
+
+        :return:
+        """
+        return self.logistic_regression.coef_

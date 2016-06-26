@@ -10,7 +10,15 @@ class LogisticRegressionTrainerTests(unittest.TestCase):
     def logistic_reg_trainer_tests(self):
         log_reg = log_builder.LogisticRegressionBuilder(constants.LOGISTIC_REGRESSION_PARAMS).build()
         lr_trainer = trainer.LogisticRegressionTrainer(log_reg)
-        dataset = datasets.load_iris()
-        lr_trainer.train(dataset.data, dataset.target)
-        predicted = lr_trainer.predict(dataset.data)
+        data_set = datasets.load_iris()
+        lr_trainer.train(data_set.data, data_set.target)
+        predicted = lr_trainer.predict(data_set.data)
         self.assertEqual(len(predicted), 150)
+
+    def confusion_metrics_tests(self):
+        log_reg = log_builder.LogisticRegressionBuilder(constants.LOGISTIC_REGRESSION_PARAMS).build()
+        lr_trainer = trainer.LogisticRegressionTrainer(log_reg)
+        data_set = datasets.load_iris()
+        lr_trainer.train(data_set.data, data_set.target)
+        [report, confusion_metrics] = lr_trainer.confusion_matrix(data_set.data, data_set.target)
+        self.assertEqual(confusion_metrics[0][0], 50)
