@@ -1,7 +1,5 @@
 import unittest
 from numpy import ravel
-from pybrain.tools.xml.networkwriter import NetworkWriter
-from pybrain.tools.xml.networkreader import NetworkReader
 from sklearn import datasets
 from pybrain.datasets import ClassificationDataSet
 import machine_learning.nueral_network.nn_trainer as trainer
