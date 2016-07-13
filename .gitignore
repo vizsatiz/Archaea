@@ -10,3 +10,5 @@ mnist.pkl.gz
 src
 # Ignoring build folders
 build
+# Ignoring log file changes
+*.log
