@@ -3,7 +3,6 @@ from pybrain.tools.xml.networkreader import NetworkReader
 
 
 class PyBrainNetworkPersistenceHelper:
-
     def __init__(self):
         pass
 
@@ -29,6 +28,7 @@ class PyBrainNetworkPersistenceHelper:
         file.write(dom)
         file.close()
         return NetworkReader.readFrom('some.xml')
+
 
 class NetworkWriterHelper(NetworkWriter):
     @staticmethod
