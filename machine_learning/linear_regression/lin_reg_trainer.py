@@ -3,14 +3,13 @@ import numpy as num_py
 
 class LinearRegressionTrainer:
 
-    def __init__(self, linear_regression, degree):
+    def __init__(self, linear_regression):
         """
         Initiate the trainer with linear regression object
 
         :param linear_regression:
         """
         self.lr_object = linear_regression
-        self.degree = degree
 
     def train(self, X_train, Y_train):
         """
@@ -21,7 +20,7 @@ class LinearRegressionTrainer:
         :param Y_train: Results for supervised learning
         :return:        """
 
-        self.lr_object.fit(num_py.vander(X_train, self.degree + 1), Y_train)
+        self.lr_object.fit(X_train, Y_train)
 
     def predict(self, X):
         """
@@ -30,7 +29,7 @@ class LinearRegressionTrainer:
         :param X:
         :return:
         """
-        return self.lr_object.predict(num_py.vander(X, self.degree + 1))
+        return self.lr_object.predict(X)
 
     def error_and_variance(self, X_test, Y_test):
         """
@@ -41,7 +40,7 @@ class LinearRegressionTrainer:
         :return:
         """
         mean_error = num_py.mean((self.predict(X_test) - (Y_test)) ** 2)
-        variance = self.lr_object.score(num_py.vander(X_test, self.degree + 1), Y_test)
+        variance = self.lr_object.score(X_test, Y_test)
         return mean_error, variance
 
     def regression_coefficients(self):
